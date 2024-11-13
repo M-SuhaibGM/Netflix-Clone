@@ -1,0 +1,13 @@
+*{
+    padding: 0%;
+    margin: 0%;
+
+}
+
+
+.video{
+    
+    filter: brightness(0.7);
+    border-radius: 10px;
+
+}
