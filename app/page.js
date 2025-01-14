@@ -31,7 +31,7 @@ const page = () => {
                     <div className="box">
                     </div>
                     <div className="con">
-                        <span className="h">Unlimited movies, TV shows, and more</span>
+                        <span className="h">Unlimited movies, TV Shows, and more</span>
                         <span className="boxes">Watch anywhere. Cancel anytime.</span>
                         <span className="boxes">Ready to watch? Enter your email to create or restart your membership.
                         </span>
