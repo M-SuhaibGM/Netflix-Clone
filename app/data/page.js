@@ -154,12 +154,50 @@ const page = () => {
 
         console.log(name)
     }
+    const [isScrolling, setIsScrolling] = useState(false); // Track scrolling state
+    const [lastScrollY, setLastScrollY] = useState(0); // Keep track of the last scroll position
 
+    const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY > lastScrollY) {
+            // Scrolling down
+            setIsScrolling(false);
+        } else {
+            // Scrolling up
+            setIsScrolling(true);
+        }
+
+        setLastScrollY(currentScrollY);
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        // Cleanup on component unmount
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [lastScrollY]);
     return (
         <>
             <Container style={{ filter: `brightness(${brightness}%)` }} bg="black" minW="100vw" minH="100vh"  >
                 <VStack w="100vw" h="100vh">
-                    <Flex zIndex={10} left="0px" pl="10px" pt="10px" gap="20px" width="99vw" h="60px" align="start" color="white" position="fixed">
+                    <Flex
+                        style={{
+                            position: 'fixed',
+                            top: 0,
+                            width: '100%',
+                            height: '60px',
+                            backgroundColor: '#333',
+                            color: '#fff',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            transition: 'transform 0.3s ease',
+                            transform: isScrolling ? 'translateY(0)' : 'translateY(-100%)',
+                        }}
+                        zIndex={10} left="0px" pl="10px" pt="10px" gap="20px" width="99vw" h="60px" align="start" color="white" position="fixed">
                         <Box as={Link} href="/"  >
                             <Image width="40px" filter="invert(1)" src='back.svg' />
                         </Box>
